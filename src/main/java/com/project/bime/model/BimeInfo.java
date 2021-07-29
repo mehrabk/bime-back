@@ -23,9 +23,12 @@ public class BimeInfo {
     private String carName;
 
     public BimeInfo(String carName, Bime bime){
-        this.carName = carName;
+        // because carName can be null we set default text
+        if (carName == null) {
+            setCarName("DefaultText");
+        }else{
+            this.carName = carName;
+        }
         this.bime = bime;
     }
-
-
 }

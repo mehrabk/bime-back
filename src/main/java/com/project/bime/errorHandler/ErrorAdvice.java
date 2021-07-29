@@ -36,4 +36,11 @@ public class ErrorAdvice {
         error.setValidationErrors(validationErrors);
         return error;
     }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ApiErrorResponse handleIllegalArgException(IllegalArgumentException exception, HttpServletRequest request) {
+        ApiErrorResponse error = new ApiErrorResponse(500, exception.getMessage(), request.getServletPath());
+        return error;
+    }
 }

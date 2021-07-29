@@ -2,22 +2,37 @@ package com.project.bime.payload.customer;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Data
 public class CustomerRequest {
-    private long id;
-    @NotNull @NotBlank @Size(min = 3, max = 25)
+
+    @NotNull
+    @Min(0)
+    private Long id;
+
+    @NotNull
+    @NotBlank
+    @Size(min = 2, max = 25, message = "Username must be between 2 and 25 length")
     private String userName;
-    @NotNull @NotBlank
-    @Size(min = 1, max = 25)
+
+    @NotNull
+    @NotBlank
+    @Size(min = 2, max = 25, message = "Lastname must be between 2 and 25 length")
     private String lastName;
-    @NotNull @NotBlank
+
+    @NotNull
+    @NotBlank
+    @Size(min = 2, max = 50, message = "Address must be between 2 and 25 length")
     private String address;
-    @NotNull @NotBlank
+
+    @NotNull
+    @NotBlank
+    @Pattern(regexp="[\\d]{11}", message = "PhoneNumber must be 11 digit - Like: 09xx-xxx-xxxx")
     private String phoneNumber;
-    @NotNull @NotBlank @Size(min = 10, max = 10)
+
+    @NotNull
+    @NotBlank
+    @Pattern(regexp="[\\d]{10}", message = "National code must be 10 digit")
     private String nationalCode;
 }

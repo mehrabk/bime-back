@@ -1,11 +1,13 @@
 package com.project.bime.service.bime;
 
 import com.project.bime.model.Bime;
+import com.project.bime.payload.PagedResponse;
 import com.project.bime.payload.bime.BimeRequest;
+import com.project.bime.payload.bime.BimeResponse;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
-import java.util.Optional;
 
 public interface BimeService {
-    Bime save(BimeRequest request);
+    PagedResponse<BimeResponse> findAllByCustomer_Id(long customerId, Pageable pageable);
+    Bime save(BimeRequest request, long cId);
 }

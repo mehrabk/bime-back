@@ -1,5 +1,6 @@
 package com.project.bime.service.customer;
 
+import com.project.bime.exception.NotFoundException;
 import com.project.bime.mapper.CustomerMapper;
 import com.project.bime.model.Customer;
 import com.project.bime.payload.PagedResponse;
@@ -11,9 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
-
 
 @Service
 public class CustomerServiceImpl implements CustomerService{
@@ -45,10 +43,7 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public Customer save(CustomerRequest request) {
-        Optional<Customer> item = request.getId() > 0 ? customerRepository.findById(request.getId()) : Optional.empty();
-        Customer newCustomer = item.orElseGet(() -> new Customer());
+        Customer newCustomer = request.getId() > 0 ? customerRepository.findById(request.getId()).orElseThrow(() -> new NotFoundException("Customer with id=" + request.getId() + " not found!")) : new Customer();
         return customerRepository.save(customerMapper.requestToCustomer(request, newCustomer));
     }
-
-
 }

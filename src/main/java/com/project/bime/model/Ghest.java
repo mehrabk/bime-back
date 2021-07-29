@@ -5,10 +5,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.util.Date;
 
 @Entity
@@ -20,10 +22,10 @@ public class Ghest extends AuditModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Min(0)
+    @Min(0) @Positive
     private int ghestNumber;
 
-    @NotNull
+    @NotNull @DateTimeFormat
     private Date ghestDate;
 
     @NotNull
@@ -31,7 +33,6 @@ public class Ghest extends AuditModel {
 
     @Lob
     private String imageUrl;
-
 
     private String smsStatus;
 

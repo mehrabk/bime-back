@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GhestRepository extends JpaRepository<Ghest, Long> {
-    Page<Ghest> findAllByBime_Id(Long bimeId, Pageable pageable);
+    Page<Ghest> findAllByBime_Id(Pageable pageable, long bimeId);
 }

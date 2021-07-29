@@ -33,7 +33,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             String jwt = parseJwt(httpServletRequest);
             logger.info(String.format("JWT === > '%s' ", jwt));
             if (jwt != null && jwtTokenProvider.validateJwtToken(jwt)) {
-                logger.info(String.format("mehrabe kor "));
                 String username = jwtTokenProvider.getUserNameFromJwtToken(jwt);
                 logger.info(String.format("username === > '%s' ", username));
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);

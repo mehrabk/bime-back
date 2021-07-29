@@ -6,9 +6,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.List;
 
@@ -16,21 +14,20 @@ import java.util.List;
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Bime extends AuditModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Size(min = 3)
+    @NotNull @NotBlank @Size(min = 3)
     private String bimeNumber;
 
-    @Min(1)
+    @NotNull @Positive
     private long yektaCode;
 
-    @Min(1)
+    @NotNull @Positive
     private long totalPrice;
 
-    @Min(1)
+    @NotNull @Positive
     private long pishPardakht;
 
     @NotNull
@@ -39,7 +36,7 @@ public class Bime extends AuditModel {
     @Lob
     private String note;
 
-    @NotNull
+    @NotNull @Positive
     private int type;
 
     // the @PrimaryKeyJoinColumn annotation, which indicates that the primary key of the bime entity is used as the foreign key value for the associated bimeInfo entity.
