@@ -1,11 +1,9 @@
 package com.project.bime.payload.user;
 
-import com.project.bime.model.user.User;
 import lombok.Data;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Data
 public class UserSummary {

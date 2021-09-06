@@ -43,7 +43,7 @@ public class CustomerController {
 
     @DeleteMapping("/delete")
     public ResponseEntity<?> delete(@RequestParam long id) {
-        Customer customer = customerRepository.findById(id).orElseThrow(() -> new NotFoundException("Customer with id=" + id + " Not Found!"));
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new NotFoundException("Customer with id=" + id + " not found!"));
         try {
             customerRepository.delete(customer);
             return ResponseEntity.ok(new ApiResponse(true, "Customer with id=" + id + " Deleted!"));
@@ -52,4 +52,11 @@ public class CustomerController {
             return new ResponseEntity<>(new ApiResponse(false, "Error : " + ex.getMessage() ), HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping("/info")
+    public ResponseEntity<CustomerResponse> info(@RequestParam("id") long id) {
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new NotFoundException("Customer with id=" + id + " not found!"));
+        return ResponseEntity.ok(new CustomerResponse(customer));
+    }
+
 }

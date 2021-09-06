@@ -5,6 +5,7 @@ import com.project.bime.model.extra.Attachment;
 import com.project.bime.payload.media.MediaInfo;
 import com.project.bime.repository.MediaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,9 @@ import java.util.UUID;
 @RequestMapping("/api")
 public class MediaController {
 
+    @Value("${com.resource.location}")
+    private String rootLoc;
+
     private MediaRepository mediaRepository;
 
     @Autowired
@@ -32,8 +36,9 @@ public class MediaController {
         int a = originalName.lastIndexOf(".");
         String file_type = originalName.substring(a + 1);
         String name = UUID.randomUUID() + "." + file_type;
-        String path = "/public/images/" + name;
-        File outFile = new File(System.getProperty("user.dir") + path);
+        String path = rootLoc + "/upload/" + name;
+//        File outFile = new File(System.getProperty("user.dir") + path);
+        File outFile = new File(path);
         try {
             OutputStream out = new FileOutputStream((outFile));
             FileCopyUtils.copy(file.getInputStream(), out);

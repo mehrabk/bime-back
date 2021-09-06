@@ -67,11 +67,7 @@ public class AuthController {
         UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
         List<String> roles = userPrincipal.getAuthorities()
                 .stream().map(role -> role.getAuthority()).collect(Collectors.toList());
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt,
-                userPrincipal.getId(),
-                userPrincipal.getUsername(),
-                userPrincipal.getEmail(),
-                roles));
+        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
     }
 
     @PostMapping("/signup")
