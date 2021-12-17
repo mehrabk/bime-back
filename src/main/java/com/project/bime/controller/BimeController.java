@@ -57,4 +57,5 @@ public class BimeController {
         return new ResponseEntity<>(new BimeResponse(bime), HttpStatus.OK);
     }
 
+
 }

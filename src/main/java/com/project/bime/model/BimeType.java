@@ -37,9 +37,9 @@ public enum BimeType {
     public String toString() {
         switch (this) {
             case BIME_SALES:
-                return "بیمه ثالث";
+                return "sales";
             case BIME_BADANE:
-                return "بیمه بدنه";
+                return "badane";
             case UN_KNOWN:
                 return "";
             default:

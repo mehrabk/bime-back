@@ -18,6 +18,6 @@ public class JwtAuthenticationEntryPointImpl implements AuthenticationEntryPoint
     @Override
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException authException) throws IOException, ServletException {
         logger.error("Unauthorized error: {}", authException.getMessage());
-        httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "خطای مجوز دسترسی");
+        httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "خطای مجوز دسترسی به سرور.");
     }
 }

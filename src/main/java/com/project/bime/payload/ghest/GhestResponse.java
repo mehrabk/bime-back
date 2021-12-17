@@ -26,6 +26,7 @@ public class GhestResponse {
         setGhestPrice(ghest.getGhestPrice());
         setCreatedAt(ghest.getCreatedAt());
         setUpdatedAt(ghest.getUpdatedAt());
+        setGhestDate(ghest.getGhestDate());
         setImageUrl(ghest.getImageUrl());
         setSmsStatus(ghest.getSmsStatus());
         setNote(ghest.getNote());
